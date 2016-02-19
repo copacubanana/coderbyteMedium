@@ -46,7 +46,20 @@ answer = true;
 return primeArr;    
 }   
 
-//function to check if digits are matching !!! if prime.length < orig.length add zeros
+//if prime.length < orig.length add zeros
+
+function addZeros(orig, prime) {
+var or = orig.toString();
+var pr = prime.toString();
+while (or.length > pr.length) {
+   pr = "0" + pr;    
+}
+return pr; 
+}
+document.write(addZeros(500,5));
+
+
+//function to check if digits are matching 
 
 function digitMatch(orig, prime) {
 
@@ -62,8 +75,6 @@ primeArr.sort(function(a,b){return a-b});
    }
    }
 }
-
-document.write(digitMatch(435,534));
 
 </script>
 
