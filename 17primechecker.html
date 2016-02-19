@@ -11,75 +11,59 @@
 
 <script>
 
-//organize digits from high to low
+//function to order digits from high to low
 function highToLow(num) {
     numStr = num.toString();
     numStr = numStr.split('');
     numStr.sort(function(a,b){return b-a;});
 
-return Number(numStr.join(''));
+    return Number(numStr.join(''));
 }
 
-//make a function to check if highest num to 2 is prime, if prime add to array
+//function to count up to
+function count(num) {
+numArr = [];
+    for (var c = 2; c <= num; c++) {
+        numArr.push(c);
+    }
+return numArr;
+}
+
+//function to check if a number is prime, add to array if is prime   
 function isPrime(num) {
-    primeArr = [];
+primeArr = [];
+answer = true; 
+
     for (var i = 2; i < num; i++) {
-        if ( num % (num-i) == 0) {
-            primeArr.push(num);
+        if (num % i === 0) {
+            answer = false;
         }
-    }    
+    }      
+    
+    if (answer === true) {
+        primeArr.push(num);
+    }
 return primeArr;    
-}
+}   
 
-//check primeArr, if digits are same original number, return true
-function PrimeChecker(num) {
-    answer = 0;
-    digits = num.toString(); 
-    primeArr = ; // from previous
-   
-   for (var i = 0; i < primeArr[i].length; i++) {  //loop through each number in primeArr
-       
-       var currPrime = primeArr[i].toString();  //change each primeArr item to string;
-           
-           while (currPrime.length < digits.length) {
-               currPrime = "0" + currPrime;
-           }
-           
-           for (var ii = 0; ii < digits; ii++) {  //compare each currentPrime digit with each num digit
-                for (var j = 0; j < currPrime.length; j++) {
-                
-                    if (digits.substr(ii,1) === currPrime.substr(j,1)){
-                       digits.splice(ii,1);
-                    }
-                }
-             
-           }
-           
-           if (digits.length === 0) {
-               answer true;
-           }                       
+//function to check if digits are matching !!! if prime.length < orig.length add zeros
+
+function digitMatch(orig, prime) {
+
+origArr = orig.toString().split('');
+primeArr = prime.toString().split('');
+
+origArr.sort(function(a,b){return a-b});
+primeArr.sort(function(a,b){return a-b});
+
+   for (var i = 0; i < origArr.length; i++) {
+   if (origArr[i] == origArr[i]) {
+   return "match";
    }
-return answer;   
+   }
 }
 
-       /*
-       if (numLen < primeLen ) //and there is a zero in numLen
-       if (numLen === primeLen)  
-       }*/
-
-
-document.write( PrimeChecker(98) ); // 0
-document.write('<br>');
-document.write( PrimeChecker(598) ); // 0
-document.write('<br>');
-//document.write( () ); // 
-//document.write('<br>');
-
-/*  Notes
-
-
-*/
-
+document.write(digitMatch(435,534));
 
 </script>
 
