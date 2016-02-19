@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<title>Prime Checker</title>
+</head>
+<body>
+<pre>
+ 
+</pre>
+
+<script>
+
+/*
+Steps: 
+arrange num digits high to low, Number(.join() );
+
+generate an array of prime numbers starting from the highest possible number
+
+*/
+
+function PrimeChecker(num) {
+numArr = [];
+numArr = num.toString().split('').sort(function(a,b){return b-a});
+largNum = Number(numArr.join(''));
+temp = 0;
+notPrimeArr = [];
+divisor = 2;
+cats = 0;
+var ii = 1;
+
+return notPrimeArr;
+}
+document.write( PrimeChecker(98) ); // 0
+document.write('<br>');
+document.write( PrimeChecker(598) ); // 0
+document.write('<br>');
+//document.write( () ); // 
+//document.write('<br>');
+
+/*  Notes
+
+
+*/
+
+
+</script>
+
+
+</body>
+</html>
