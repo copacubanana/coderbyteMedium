@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dash II</title>
+<meta charset='UTF-8' />
+<style>
+</style>
+</head>
+<body>
+<p>Using the JavaScript language, have the function DashInsertII(num) insert dashes ('-') 
+ between each two odd numbers and insert asterisks ('*') between each two even numbers in 
+ str. For example: if str is 4546793 the output should be 454*67-9-3. Don't count zero as 
+ an odd or even number. </p>
+
+<script>
+
+function DashInsertII(num) { 
+numArr = num.toString().split('');
+answer = '';
+
+for (var i = 0; i < numArr.length-1; i++) {   
+    
+    if (numArr[i] % 2 == 0 && numArr[i+1] % 2 == 0 && numArr[i] != 0) {
+        answer += numArr[i] + '*';
+        
+    } else if ( numArr[i] % 2 !== 0 && numArr[i+1] % 2 !== 0 && numArr[i] != 0) {
+        answer += numArr[i] + '-';
+        
+    } else {
+        answer += numArr[i];
+    }    
+}
+
+answer += numArr[numArr.length-1];
+
+return answer;
+}
+
+document.write(DashInsertII(99946)); //9-9-94*6 
+document.write('<br>');
+document.write(DashInsertII(56647304)); //56*6*47-304
+document.write('<br>');
+document.write(DashInsertII(4546793)); //454*67-9-3
+document.write('<br>');
+
+
+</script>
+</body>
+</html>
