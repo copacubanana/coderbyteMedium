@@ -14,6 +14,15 @@
 
 <script>
 
+/*
+Steps:
+1.  Turn num into a string then split into an array numArr
+2.  Loop through, if two elements next to each other are divisible by 2 (EVEN), and is not 0, add to answer
+3.  If two elements next to each other are NOT divisible by 2 (ODD), and is not 0, add to answer
+4.  If two elements, are either odd or even, add to answer
+5.  Add last element of array to answer
+*/  
+
 function DashInsertII(num) { 
 numArr = num.toString().split('');
 answer = '';
@@ -43,6 +52,17 @@ document.write('<br>');
 document.write(DashInsertII(4546793)); //454*67-9-3
 document.write('<br>');
 
+/* Notes 
+2/22/16 Solved with steps
+
+Of interest:
+
+numArr[i] !== 0 doesn't work, num Arr[i] is a string, !== type and value
+numArr[i] != 0 works
+
+E.g. the operation numArr[i] % 2 == 0, the operation changed the type to Number
+
+*/
 
 </script>
 </body>
