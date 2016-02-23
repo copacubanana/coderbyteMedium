@@ -29,10 +29,10 @@ answer = '';
 
 for (var i = 0; i < numArr.length-1; i++) {   
     
-    if (numArr[i] % 2 == 0 && numArr[i+1] % 2 == 0 && numArr[i] != 0) {
+    if (numArr[i] % 2 == 0 && numArr[i+1] % 2 == 0 && numArr[i] != 0 && numArr[i+1] != 0) {
         answer += numArr[i] + '*';
         
-    } else if ( numArr[i] % 2 !== 0 && numArr[i+1] % 2 !== 0 && numArr[i] != 0) {
+    } else if ( numArr[i] % 2 !== 0 && numArr[i+1] % 2 !== 0 && numArr[i] != 0 && numArr[i+1] != 0) {
         answer += numArr[i] + '-';
         
     } else {
@@ -50,6 +50,10 @@ document.write('<br>');
 document.write(DashInsertII(56647304)); //56*6*47-304
 document.write('<br>');
 document.write(DashInsertII(4546793)); //454*67-9-3
+document.write('<br>');
+document.write(DashInsertII(10120)); //10120
+document.write('<br>');
+document.write(DashInsertII(60497642)); //6049-76*4*2
 document.write('<br>');
 
 /* Notes 
