@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<title>SwapII</title>
+</head>
+<body>
+<p>Using the JavaScript language, have the function SwapII(str) take the str parameter and 
+swap the case of each character. Then, if a letter is between two numbers (without 
+separation), switch the places of the two numbers. For example: if str is "6Hello4 -8World,
+ 7 yes3" the output should be 4hELLO6 -8wORLD, 7 YES3.</p>
+
+<script>
+//Steps
+//loop through numIndex array
+//take a section of the string at a time by numIndex, upperLow
+
+function SwapII(str) { 
+upLow = ''; //change the case, upper to lower and lower to upper
+numInd = []; //collect all the positions of numbers
+answer = false;
+
+    for (var i = 0; i < str.length; i++) {
+    
+        if (str[i].search(/[a-zA-Z]/) !== -1) {
+        
+            if (str[i].search(/[a-z]/) !== -1) {
+                upLow += str[i].toUpperCase();
+            } else {
+                upLow += str[i].toLowerCase();
+            }
+        }
+        
+        if (str[i].search(/[0-9]/) !== -1) {
+            upLow += str[i];
+            numInd.push(i);
+        }
+        
+        if (str[i].search(/[a-zA-Z0-9]/) == -1) {
+            upLow += str[i];
+        }
+    }
+    
+    for (var j = 0; j < numInd.length-1; j++) {
+
+        var start = numInd[j]; //posofNum
+        var end = numInd[j+1];  //posofNum
+        var startNum = upLow.substr(numInd[j],1); //actual number
+        var endNum = upLow.substr(numInd[j+1],1); //actual number
+        var tempStr = upLow.substring(start+1, end);
+        
+        if (tempStr.search(/[^a-zA-Z]/) == -1) {
+        
+            upLow = upLow.split('');
+            upLow[start] = endNum;
+            upLow[end] = startNum;
+            upLow= upLow.join('');
+        }     
+    }  
+ 
+return upLow;
+}
+
+document.write( SwapII("Hello -5LOL6") ); //"hELLO -6lol5" 
+document.write('<br>');
+document.write( SwapII("2S 6 du5d4e") ); //"2s 6 DU4D5E"
+document.write('<br>');
+document.write( SwapII("6Hello4 -8World,7 yes3") ); //4hELLO6 -8wORLD,7 YES3
+document.write('<br>');
+document.write( SwapII("6coderbyte5") ); //5CODERBYTE6
+document.write('<br>');
+document.write( SwapII("L3OV2E") ); //l2ov3e 
+document.write('<br>');
+document.write( SwapII("Hel4lo2 World") ); //hEL2LO4 wORLD 
+document.write('<br>');
+document.write( SwapII("yeahHH") ); //YEAHhh 
+document.write('<br>');
+document.write( SwapII("i love cAke33&") ); //I LOVE CaKE33&  
+document.write('<br>');
+document.write( SwapII("COMM2a2" ) ); //comm2A2
+document.write('<br>');
+document.write( SwapII("abcdE 8numbers2") ); //ABCDe 2NUMBERS8 
+document.write('<br>');
+document.write( SwapII("l2et5ter") ); //L5ET2TER  
+document.write('<br>');
+document.write( SwapII("yolO11") ); //YOLo11
+document.write('<br>');
+
+
+/*  Notes 2/23/2016
+Looks like it could all be done with RegEx, try complete RegEx solution next time
+*/
+
+
+</script>
+
+
+</body>
+</html>
