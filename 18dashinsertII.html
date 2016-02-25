@@ -27,22 +27,22 @@ function DashInsertII(num) {
 numArr = num.toString().split('');
 answer = '';
 
-for (var i = 0; i < numArr.length-1; i++) {   
+    for (var i = 0; i < numArr.length-1; i++) {   
+        if (numArr[i] % 2 == 0 && numArr[i+1] % 2 == 0 && numArr[i] != 0 && numArr[i+1] != 0) {
+            answer += numArr[i] + '*';
+        
+        } else if ( numArr[i] % 2 !== 0 && numArr[i+1] % 2 !== 0 && numArr[i] != 0 && numArr[i+1] != 0) {
+            answer += numArr[i] + '-';
     
-    if (numArr[i] % 2 == 0 && numArr[i+1] % 2 == 0 && numArr[i] != 0 && numArr[i+1] != 0) {
-        answer += numArr[i] + '*';
-        
-    } else if ( numArr[i] % 2 !== 0 && numArr[i+1] % 2 !== 0 && numArr[i] != 0 && numArr[i+1] != 0) {
-        answer += numArr[i] + '-';
-        
-    } else {
+        } else {
         answer += numArr[i];
-    }    
-}
+        }    
+    }
 
-answer += numArr[numArr.length-1];
+    answer += numArr[numArr.length-1];
 
 return answer;
+
 }
 
 document.write(DashInsertII(99946)); //9-9-94*6 

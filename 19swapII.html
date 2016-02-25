@@ -11,14 +11,13 @@ separation), switch the places of the two numbers. For example: if str is "6Hell
  7 yes3" the output should be 4hELLO6 -8wORLD, 7 YES3.</p>
 
 <script>
-//Steps
+//Steps:
 //loop through numIndex array
 //take a section of the string at a time by numIndex, upperLow
 
 function SwapII(str) { 
 upLow = ''; //change the case, upper to lower and lower to upper
 numInd = []; //collect all the positions of numbers
-answer = false;
 
     for (var i = 0; i < str.length; i++) {
     
@@ -40,13 +39,13 @@ answer = false;
             upLow += str[i];
         }
     }
-    
+ 
     for (var j = 0; j < numInd.length-1; j++) {
 
-        var start = numInd[j]; //posofNum
-        var end = numInd[j+1];  //posofNum
-        var startNum = upLow.substr(numInd[j],1); //actual number
-        var endNum = upLow.substr(numInd[j+1],1); //actual number
+        var start = numInd[j]; 
+        var end = numInd[j+1];  
+        var startNum = upLow.substr(numInd[j],1); 
+        var endNum = upLow.substr(numInd[j+1],1); 
         var tempStr = upLow.substring(start+1, end);
         
         if (tempStr.search(/[^a-zA-Z]/) == -1) {
