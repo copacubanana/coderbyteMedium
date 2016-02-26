@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<title>String Reduction</title>
+</head>
+<body>
+<p> Using the JavaScript language, have the function StringReduction(str) take the str 
+parameter being passed and return the smallest number you can get through the following 
+reduction method.</p>
+
+<p>The method is: Only the letters a, b, and c will be given in str and you must take two 
+different adjacent characters and replace it with the third. For example "ac" can be 
+replaced with "b" but "aa" cannot be replaced with anything. This method is done 
+repeatedly until the string cannot be further reduced, and the length of the resulting 
+string is to be outputted.</p>
+
+<p>For example: if str is "cab", "ca" can be reduced to "b" and you get "bb" (you can also 
+reduce it to "cc"). The reduction is done so the output should be 2.  If str is "bcab", 
+"bc" reduces to "a", so you have "aab", then "ab" reduces to "c", and the final string "ac"
+is reduced to "b" so the output should be 1.</p>
+
+<script>
+
+function StringReduction(str) {
+strArr = str.split('');
+strLen = strArr.length;
+abcArr = ['a','b','c'];
+tempArr = ['','',''];
+
+
+for (var i = 0; i < strLen - 1; i++) {
+tempArr = ['','','']; 
+
+    if (strArr[i] != strArr[i+1]) { //two adjacent characters that aren't the same
+        
+        for (var j = 0; j < abcArr.length; j++) { //loop through abc, match first
+         
+            if (strArr[i] == abcArr[j]) {
+                tempArr[j] = abcArr[j];
+            }     
+        }
+          
+          for (var jj = 0; jj < abcArr.length; jj++) {
+             if (strArr[i+1] == abcArr[jj]) { //match second
+                tempArr[jj] = abcArr[jj];
+    
+            } 
+            }  
+        for (var k = 0; k < tempArr.length; k++) { //loop through temporary Array, find the empty spot
+            if (tempArr[k] == '') {
+                strArr.splice(i,2, abcArr[k]);
+                document.write(tempArr + ' --* ' + strArr  + ' -- ');
+            }
+        }          
+    }
+}
+
+return strArr.length;
+}
+
+document.write(StringReduction("abcabc")); // 2 abcabc,ccabc,cbbc,abc,cc
+document.write('<br>');
+
+document.write(StringReduction("cccc")); // 4
+document.write('<br>');
+document.write(StringReduction("cab")); // 2 cab, bb
+document.write('<br>');
+document.write(StringReduction("bcab")); // 1 bcab,aab,ac,b
+document.write('<br>');
+
+document.write(StringReduction("abc")); // 2 abc,cc
+document.write('<br>');
+document.write(StringReduction("aabc")); // 2 aabc,a
+document.write('<br>');
+
+</script>
+</body>
+</html>
