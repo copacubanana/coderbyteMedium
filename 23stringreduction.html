@@ -3,6 +3,11 @@
 <head>
 <meta charset='UTF-8'>
 <title>String Reduction</title>
+<style>
+p {
+    color: navy;
+}    
+</style>
 </head>
 <body>
 <p> Using the JavaScript language, have the function StringReduction(str) take the str 
@@ -22,22 +27,40 @@ is reduced to "b" so the output should be 1.</p>
 
 <script>
 
+/*
+Steps:
+1. Split string into an array, store in variable strArr
+
+2. Create var Loop(). Loop has a var 'abc' an array of letters abc;
+The other is tempArr which has the same length as abc but with empty strings to hold each 
+place. The loop function will loop through loop's parameter arr, first finding two characters
+in the string which are next to each other and are not the same.  Then it will find the 
+matching letter in var abc, and store it in the correlating place in tempArr.  It will then
+loop through tempArr and find the only empty string.  Once it is found, it will find the 
+correlating letter in var abc using the same index of tempArr, then using plice() will remove
+2 characters starting from i positon, and add in the extra letter. Once the loop is finished,
+arr will be turned into a string using .join(), and be put back into StringReduction().
+
+3.  StringReduction will loop through the new string to find if there are any characters 
+that are not the same.  If true, it will send the string back to var Loop(), if none 
+are found, the string's length will be found and returned;  
+*/
+
 function StringReduction(str) {
 strArr = str.split('');
-strLen = strArr.length;
 
 var loop = function(arr) {
 abc = ['a','b','c'];
-tempArr = ['','',''];
+
    for (var i = 0; i < arr.length-1; i++) {
-       
-       if (arr[i] != arr[i+1]) {
+       tempArr = ['','',''];
+       if (arr[i] !== arr[i+1]) {
            for (var j = 0; j < 3; j++) {
-               if (arr[i] == abc[j]) {
+               if (arr[i] === abc[j]) {
                    tempArr[j] = arr[i];
                }
                
-               if (arr[i+1] == abc[j]) {
+               if (arr[i+1] === abc[j]) {
                    tempArr[j] = arr[i+1];
                }
            }
@@ -49,6 +72,7 @@ tempArr = ['','',''];
        }       
        }   
    }
+   
 arr = arr.join('');
 return StringReduction(arr);
 }
@@ -62,52 +86,8 @@ return StringReduction(arr);
 return strArr.length;    
 }
 
-document.write(stringReduction('abc')); // abc, cc 2
+document.write(StringReduction('abc')); // 2 abc,cc
 document.write('<br>');
-document.write(stringReduction("abcabc")); // 2 abcabc,ccabc,cbbc,abc,cc
-document.write('<br>');
-document.write(stringReduction("cccc")); // 4
-document.write('<br>');
-document.write(stringReduction("cab")); // 2 cab, bb
-document.write('<br>');
-document.write(stringReduction("bcab")); // 1 bcab,aab,ac,b
-document.write('<br>');
-document.write(stringReduction("abc")); // 2 abc,cc
-document.write('<br>');
-document.write(stringReduction("aabc")); // 1 aabc,acc,bc,a
-document.write('<br>');
-
-/*
-var loop = function () {
-for (var i = 0; i < strLen - 1; i++) {
-tempArr = ['','','']; 
-
-    if (strArr[i] != strArr[i+1]) { //two adjacent characters that aren't the same
-        
-        for (var j = 0; j < abcArr.length; j++) { //loop through abc, match first
-         
-            if (strArr[i] == abcArr[j]) {
-                tempArr[j] = abcArr[j];
-            }     
-        }
-          
-          for (var jj = 0; jj < abcArr.length; jj++) {
-             if (strArr[i+1] == abcArr[jj]) { //match second
-                tempArr[jj] = abcArr[jj];
-    
-            } 
-            }  
-        for (var k = 0; k < tempArr.length; k++) { //loop through temporary Array, find the empty spot
-            if (tempArr[k] == '') {
-                strArr.splice(i,2, abcArr[k]);
-                document.write(tempArr + ' --* ' + strArr  + ' -- ');
-            }
-        }          
-    }
-}   
-return;
-}
-
 document.write(StringReduction("abcabc")); // 2 abcabc,ccabc,cbbc,abc,cc
 document.write('<br>');
 document.write(StringReduction("cccc")); // 4
@@ -120,7 +100,8 @@ document.write(StringReduction("abc")); // 2 abc,cc
 document.write('<br>');
 document.write(StringReduction("aabc")); // 1 aabc,acc,bc,a
 document.write('<br>');
-*/
+
+/* Notes Completed 2/27/2016 */
 </script>
 </body>
 </html>
