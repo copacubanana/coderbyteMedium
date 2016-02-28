@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<title>Bracket Matcher</title>
+</head>
+<body>
+<p>Using the JavaScript language, have the function BracketMatcher(str) take the str 
+parameter being passed and return 1 if the brackets are correctly matched and each one is 
+accounted for. Otherwise return 0. For example: if str is "(hello (world))", then the 
+output should be 1, but if str is "((hello (world))" the the output should be 0 because 
+the brackets do not correctly match up. Only "(" and ")" will be used as brackets. If str 
+contains no brackets return 1. </p>
+
+<script>
+
+/* Steps:
+   
+   loop through each character in the string
+   var count keeps track of the pairs, +1 for '(', -1 for ')' parentheses
+   'count >= 0' makes sure that if a right parentheses appears before a left, the count will be negative
+   if there is a correct pair matching in the string, count will be neutral at 0
+   if the count is 0, return 1, else return 0;
+   
+*/
+
+function BracketMatcher(str) {
+count = 0;
+
+
+for (var i = 0; i < str.length; i++) {
+
+    if (str.substr(i,1).search(/\(/) !== -1 && count >= 0) {
+        count++;
+    }
+    
+    if (str.substr(i,1).search(/\)/) !== -1) {
+        count--;
+    }      
+}
+
+if (count === 0) { 
+    return 1;
+} else {
+    return 0;
+}
+}
+
+document.write(BracketMatcher("(coder)(byte))")); // 0
+document.write('<br>');
+document.write(BracketMatcher("(c(oder)) b(yte)")); // 1
+document.write('<br>');
+document.write(BracketMatcher("(hello (world))")); // 1
+document.write('<br>');
+
+/* Notes: Complete 2/26/2016 */
+
+</script>
+</body>
+</html>

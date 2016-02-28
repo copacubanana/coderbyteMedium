@@ -21,67 +21,13 @@ reduce it to "cc"). The reduction is done so the output should be 2.  If str is 
 is reduced to "b" so the output should be 1.</p>
 
 <script>
-
 function StringReduction(str) {
 strArr = str.split('');
 strLen = strArr.length;
-
-var loop = function(arr) {
-abc = ['a','b','c'];
+abcArr = ['a','b','c'];
 tempArr = ['','',''];
-   for (var i = 0; i < arr.length-1; i++) {
-       
-       if (arr[i] != arr[i+1]) {
-           for (var j = 0; j < 3; j++) {
-               if (arr[i] == abc[j]) {
-                   tempArr[j] = arr[i];
-               }
-               
-               if (arr[i+1] == abc[j]) {
-                   tempArr[j] = arr[i+1];
-               }
-           }
-       
-       for (var k = 0; k < 3; k++) {
-           if (tempArr[k] == '') {
-               arr.splice(i,2,abc[k]);
-           }
-       }       
-       }   
-   }
-arr = arr.join('');
-return StringReduction(arr);
-}
-    
-    for (var i = 0; i < strArr.length-1; i++) {
-        if (strArr[i] != strArr[i+1]) {
-            return loop(strArr);
-        } 
-    }
-    
-return strArr.length;    
-}
-
-document.write(stringReduction('abc')); // abc, cc 2
-document.write('<br>');
-document.write(stringReduction("abcabc")); // 2 abcabc,ccabc,cbbc,abc,cc
-document.write('<br>');
-document.write(stringReduction("cccc")); // 4
-document.write('<br>');
-document.write(stringReduction("cab")); // 2 cab, bb
-document.write('<br>');
-document.write(stringReduction("bcab")); // 1 bcab,aab,ac,b
-document.write('<br>');
-document.write(stringReduction("abc")); // 2 abc,cc
-document.write('<br>');
-document.write(stringReduction("aabc")); // 1 aabc,acc,bc,a
-document.write('<br>');
-
-/*
-var loop = function () {
 for (var i = 0; i < strLen - 1; i++) {
 tempArr = ['','','']; 
-
     if (strArr[i] != strArr[i+1]) { //two adjacent characters that aren't the same
         
         for (var j = 0; j < abcArr.length; j++) { //loop through abc, match first
@@ -104,10 +50,9 @@ tempArr = ['','',''];
             }
         }          
     }
-}   
-return;
 }
-
+return strArr.length;
+}
 document.write(StringReduction("abcabc")); // 2 abcabc,ccabc,cbbc,abc,cc
 document.write('<br>');
 document.write(StringReduction("cccc")); // 4
@@ -118,9 +63,8 @@ document.write(StringReduction("bcab")); // 1 bcab,aab,ac,b
 document.write('<br>');
 document.write(StringReduction("abc")); // 2 abc,cc
 document.write('<br>');
-document.write(StringReduction("aabc")); // 1 aabc,acc,bc,a
+document.write(StringReduction("aabc")); // 2 aabc,a
 document.write('<br>');
-*/
 </script>
 </body>
 </html>

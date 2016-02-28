@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<title>Triple Double</title>
+</head>
+<body>
+<p> Using the JavaScript language, have the function TripleDouble(num1,num2) take both 
+parameters being passed, and return 1 if there is a straight triple of a number at any 
+place in num1 and also a straight double of the same number in num2. For example: if num1 
+equals 451999277 and num2 equals 41177722899, then return 1 because in the first parameter 
+you have the straight triple 999 and you have a straight double, 99, of the same number in
+the second parameter. If this isn't the case, return 0.</p>
+
+<script>
+
+function TripleDouble(num1,num2) {
+
+numStr1 = num1.toString();
+numStr2 = num2.toString();
+triple = 1;
+doubl = 1;
+ans1 = false;
+ans2 = false;
+
+for (var i = 0; i < numStr1.length-1; i++) {
+
+   if (numStr1.substr(i,1) == numStr1.substr(i+1,1)) {
+       triple++;  
+       if (triple === 3) {
+           ans1 = true;
+       } 
+    }else {
+       triple = 1;
+    }    
+}
+
+for (var j = 0; j < numStr2.length-1; j++) {
+   if (numStr2.substr(j,1) == numStr2.substr(j+1,1)) {
+       doubl++;   
+       if (doubl === 2) {
+           ans2 = true;
+       } 
+    }else {
+       doubl = 1;
+    }     
+}
+
+if (ans1 == true && ans2 == true ) {
+   return 1;
+} else {  
+   return 0; 
+}
+}
+
+document.write(TripleDouble(465555,5579)); // 1
+document.write('<br>');
+document.write(TripleDouble(67844,66237)); // 0
+document.write('<br>');
+document.write(TripleDouble(451999277,41177722899)); // 1 
+document.write('<br>');
+document.write(TripleDouble(451999277,4172899)); // 1 
+document.write('<br>');
+/*
+
+function TripleDouble(num1,num2) {
+
+numStr1 = num1.toString();
+numStr2 = num2.toString();
+triple = 0;
+doubl = 0;
+
+for (var i = 0; i < numStr1.length-2; i++) {
+
+   if (numStr1.substr(i,1) == numStr1.substr(i+1,1)) {
+        triple++;
+        
+        if (triple === 3) {
+            break;
+        }
+        
+   } else {
+   
+        triple = 0;     
+   }
+}
+
+for (var i = 0; i < numStr2.length-2; i++) {
+
+   if (numStr2.substr(i,1) == numStr2.substr(i+1,1)) {
+        doubl++;
+        
+        if (doubl == 2) {
+            break;
+        }
+        
+   } else {
+   
+        doubl = 0;  
+   }
+}
+
+if (triple === 3 && doubl === 2 ) {
+
+   return 1;
+
+} else {
+  
+   return 0; 
+}
+}
+
+
+*/
+
+</script>
+</body>
+</html>
