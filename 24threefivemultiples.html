@@ -12,15 +12,27 @@ so your program should return 23. The integer being passed will be between 1 and
 <script>
 
 function ThreeFiveMultiples(num) {
+ansArr = [];
+answer = 0;
 
-return ;
+    for (var i = 3; i < num; i++) {
+        if (i % 5 == 0 || i % 3 == 0) {
+            ansArr.push(i);
+        }
+    }
+
+for (var j = 0; j < ansArr.length; j++) {
+        answer += ansArr[j];
+    }
+
+return answer;
 }
 
 document.write(ThreeFiveMultiples(6)); // 8
 document.write('<br>');
-document.write(ThreeFiveMultiples(10)); // 0
+document.write(ThreeFiveMultiples(10)); // 23
 document.write('<br>');
-document.write(ThreeFiveMultiples()); // 
+document.write(ThreeFiveMultiples(2)); // 0
 document.write('<br>');
 
 
