@@ -14,15 +14,30 @@ return the string no. </p>
 <script>
 
 function FibonacciChecker(num) {
+fibArr = [0,1];
+sum = 0;
+answer = "no";
 
-return ;
+while (sum < num) {
+    sum = fibArr[fibArr.length-1] + fibArr[fibArr.length-2];
+    fibArr.push(sum);
+}
+
+for (var i = 0; i < fibArr.length; i++) {
+    if (num === fibArr[i]) {
+        answer = "yes";
+    }
+}
+
+return answer;
+
 }
 
 document.write(FibonacciChecker(34)); // "yes"
 document.write('<br>');
 document.write(FibonacciChecker(54)); // "no"
 document.write('<br>');
-document.write(FibonacciChecker()); // 
+document.write(FibonacciChecker(8)); // "yes"
 document.write('<br>');
 
 </script>

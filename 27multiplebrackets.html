@@ -6,7 +6,7 @@
 </head>
 <body>
 <p> Using the JavaScript language, have the function MultipleBrackets(str) take the str 
-parameter being passed and return 1 #ofBrackets if the brackets are correctly matched and 
+parameter being passed and return 1 if the brackets are correctly matched and 
 each one is accounted for. Otherwise return 0. For example: if str is "(hello [world])(!)", 
 then the output should be 1 3 because all the brackets are matched and there are 3 pairs of 
 brackets, but if str is "((hello [world])" the the output should be 0 because the brackets 
@@ -17,15 +17,53 @@ contains no brackets return 1.</p>
 <script>
 
 function MultipleBrackets(str) {
+countParen = 0;
+countBrack = 0;
 
-return ;
+for (var i = 0; i < str.length; i++) {
+    if (str[i].search('\\(') !== -1 && countParen >= 0) {
+        countParen++;
+    }
+    if (str[i].search('\\)') !== -1) {
+        countParen--;
+    }
+    if (str[i].search('\\[') !== -1  && countBrack >= 0) {
+        countBrack++;
+    }  
+    if (str[i].search('\\]') !== -1) {
+        countBrack--;
+    }  
 }
 
-document.write(MultipleBrackets("(coder)[byte)]")); // 0
+if (countParen === 0 && countBrack === 0) {
+    return 1; 
+} else {
+    return 0;
+
+}
+}
+
+document.write("(coder)[byte)]" + ' : ' + MultipleBrackets("(coder)[byte)]")); // 0
 document.write('<br>');
-document.write(MultipleBrackets("(c([od]er)) b(yt[e])")); // 1 5
+document.write("(c([od]er)) b(yt[e])"  + ' : ' + MultipleBrackets("(c([od]er)) b(yt[e])")); // 1
 document.write('<br>');
-document.write(MultipleBrackets()); // 
+document.write(")coder([byte]" + ' : ' + MultipleBrackets(")coder([byte]")); //0
+document.write('<br>');
+document.write("h[ello](!)" + ' : ' + MultipleBrackets("h[ello](!)")); //1 ?
+document.write('<br>');
+document.write("one(bracket)" + ' : ' + MultipleBrackets("one(bracket)")); //1 ?
+document.write('<br>');
+document.write("dogs and cats([(1)])" + ' : ' + MultipleBrackets("dogs and cats([(1)])")); //1?
+document.write('<br>');
+document.write("01()01()01()[10]" + ' : ' + MultipleBrackets("01()01()01()[10]")); // 1?
+document.write('<br>');
+document.write("thr[e](e) let(t)ers" + ' : ' + MultipleBrackets("thr[e](e) let(t)ers")); // 1?
+document.write('<br>');
+document.write("twice thri(c)(e)()()[[[[dash]]]]" + ' : ' + MultipleBrackets("twice thri(c)(e)()()[[[[dash]]]]")); //1?
+document.write('<br>');
+document.write("((hello [world])" + ' : ' + MultipleBrackets("((hello [world])")); //0
+document.write('<br>');
+document.write("(hello [world])(!)" + ' : ' + MultipleBrackets("(hello [world])(!)")); //1
 document.write('<br>');
 
 </script>

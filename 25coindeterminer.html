@@ -5,31 +5,77 @@
 <title>Coin Determiner</title>
 </head>
 <body>
-<p> Using the JavaScript language, have the function CoinDeterminer(num) take the input, 
+<p>Using the JavaScript language, have the function CoinDeterminer(num) take the input, 
 which will be an integer ranging from 1 to 250, and return an integer output that will 
-specify the least number of coins, that when added, equal the input integer. Coins are 
-based on a system as follows: there are coins representing the integers 1, 5, 7, 9, and 11.
-So for example: if num is 16, then the output should be 2 because you can achieve the number
-16 with the coins 9 and 7. If num is 25, then the output should be 3 because you can achieve
-25 with either 11, 9, and 5 coins or with 9, 9, and 7 coins.</p>
+specify the least number of coins, that when added, equal the input integer. </p>
+
+<p>Coins are based on a system as follows: there are coins representing the integers 
+1, 5, 7, 9, and 11.</p>
+
+<p>So for example: if num is 16, then the output should be 2 because you can achieve the 
+number 16 with the coins 9 and 7. If num is 25, then the output should be 3 because you 
+can achieve 25 with either 11, 9, and 5 coins or with 9, 9, and 7 coins.</p>
 
 <script>
 
-function CoinDeterminer(num) {
+/*  Steps:
+subtract from num using var coins to get to 0, 
+keep track of each time a number is subtracted using var count,
+use while to loop numbers until num === 0;
+*/
 
-return ;
+function CoinDeterminer(num) {
+count = 0;
+
+    loop = function (target) {
+    coins = [1, 5, 7, 9, 11];
+    for (var i = 0; i < coins.length; i++) {
+    
+        if (target === coins[i]) {
+            count += 1;
+            target -= coins[i];
+        }
+        if (target > coins[i] && target < coins[i+1]) {
+            count += 1;
+            target -= coins[i];
+        }
+        
+        if (target > 11) {
+            count += 1;
+            target -= 11;
+        }
+    }
+    return target;
+    }
+
+while (num > 0) {
+    num = loop(num);
 }
 
-document.write(CoinDeterminer(6)); // 8
+if (num === 0) {
+    return count;
+} 
+
+}
+
+document.write(CoinDeterminer(6)); // 2
 document.write('<br>');
-document.write(CoinDeterminer(10)); // 0
+document.write(CoinDeterminer(16)); // 2
 document.write('<br>');
-document.write(CoinDeterminer()); // 
+document.write(CoinDeterminer(25)); //should be 3
+document.write('<br>');
+document.write(CoinDeterminer(37)); // 
+document.write('<br>');
+document.write(CoinDeterminer(14)); // 
+document.write('<br>');
+document.write(CoinDeterminer(5)); // 1
 document.write('<br>');
 
+/* Notes 3/2/2016 
+Came up with a solution, doesn't test true for 25,37,14
+Will come back to this problem later
+*/
 
- Input = 6Output = 2
-Input = 16Output = 2 
 </script>
 </body>
 </html>
