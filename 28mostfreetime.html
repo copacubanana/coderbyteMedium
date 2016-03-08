@@ -2,23 +2,111 @@
 <html lang='en'>
 <head>
 <meta charset='UTF-8'>
+<meta content="width=device-width, initial-scale=1.0">
 <title>Most Free Time</title>
+<style>
+
+p::first-line {
+    color: blue;
+    }
+
+</style>
+
 </head>
 <body>
 <p> Using the JavaScript language, have the function MostFreeTime(strArr) read the strArr 
 parameter being passed which will represent a full day and will be filled with events that
-span from time X to time Y in the day. The format of each event will be 
-hh:mmAM/PM-hh:mmAM/PM. For example, strArr may be 
-["10:00AM-12:30PM","02:00PM-02:45PM","09:10AM-09:50AM"]. Your program will have to output
-the longest amount of free time available between the start of your first event and the 
-end of your last event in the format: hh:mm. The start event should be the earliest event 
-in the day and the latest event should be the latest event in the day. The output for the 
-previous input would therefore be 01:30 (with the earliest event in the day starting at 
-09:10AM and the latest event ending at 02:45PM). The input will contain at least 3 events 
-and the events may be out of order.  </p>
+span from time X to time Y in the day.</p>
+
+<p>The format of each event will be hh:mmAM/PM-hh:mmAM/PM. For example, strArr may be 
+["10:00AM-12:30PM","02:00PM-02:45PM","09:10AM-09:50AM"].</p>
+
+<p>Your program will have to output the longest amount of free time available between the 
+start of your first event and the end of your last event in the format: hh:mm.</p>
+
+<p>The start event should be the earliest event in the day and the latest event should be 
+the latest event in the day. The output for the previous input would therefore be 01:30 
+(with the earliest event in the day starting at 09:10AM and the latest event ending at 
+02:45PM). The input will contain at least 3 events and the events may be out of order.</p>
 
 
 <script>
+
+/*STEPS:
+Turn each to a 24 hour clock format
+Arrange each in order
+find time between
+find greatest time in between
+return greatest time in hh:mm
+*/
+
+function hours24(time) {
+timeArr = time.split('-');
+startTime = timeArr[0];
+endTime = timeArr[1];
+st = startTime.split(':');
+et = endTime.split(':');
+sth = st[0];  //start time hour
+stm =  st[1];  //start time minute
+eth = et[0];  //end time hour
+etm =  et[1];  //end time minute
+convert = "";
+
+//change to 24 hour clock format
+
+if(stm.search('PM') !== -1 && sth.search('12') == -1) {
+    sth = Number(sth) + 12;
+}
+
+if(etm.search('PM') !== -1 && eth.search('12') == -1) {
+    eth = Number(eth) + 12;
+}
+
+if(stm.search('AM') !== -1 && sth.search('12') !== -1) {
+    sth = "00";
+}
+
+if(etm.search('AM') !== -1 && eth.search('12') !== -1) {
+    eth = "00";
+}
+
+//remove AM and PM
+
+if (stm.search('PM') !== -1 || stm.search('AM') !== -1 ) {
+    stm = stm.replace('PM','');
+    stm = stm.replace('AM','');
+}
+
+if (etm.search('PM') !== -1 || etm.search('AM') !== -1 ) {
+    etm = etm.replace('PM','');
+    etm = etm.replace('AM','');
+}
+
+convert = String(sth+ ":" + stm + "-" + eth + ":" + etm);
+
+return convert;
+
+}
+
+document.write(hours24("12:15PM-02:00PM")); //12:15-14:00
+document.write('<br>');
+document.write(hours24("1:15PM-12:00AM"));  //13:15-0:00
+document.write('<br>');
+
+
+//take start time split array and order
+
+function order(arr) {
+temp = "";
+
+
+
+
+}
+
+document.write(order(["10:00-12:30","02:00-02:45","09:10-09:50"]));
+document.write('<br>');
+
 
 function MostFreeTime(strArr) {
 

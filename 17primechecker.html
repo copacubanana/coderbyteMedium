@@ -1,14 +1,108 @@
 <!DOCTYPE html>
 <html lang='en'>
 <head>
-<meta charset='UTF-8' />
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
 <title>Prime Checker</title>
-</head>
+<style>
+
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 13px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    position: absolute;
+    display: none;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 6px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: .7em;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+a.active {
+   background-color: gray;
+   color: white;
+}
+
+</style>
+
 <body>
+
+
+<div class="dropdown">
+    <button class="dropbtn">Easy Challenges</button>
+        <div class="dropdown-content">
+            <a href="#">Coming soon</a>
+        </div>
+</div>
+
+<div class="dropdown">
+    <button class="dropbtn">Medium Challenges</button>
+        <div class="dropdown-content">
+            <a class="active" href="17primechecker.html">17 Prime Checker</a>
+            <a href="18dashinsertII.html">18 Dash Insert II</a>
+            <a href="19swapII.html">19 Swap II</a>
+            <a href="20numbersearch.html">20 Number Search</a>
+            <a href="21tripledouble.html">21 Triple Double</a>
+            <a href="22bracketmatcher.html">22 Bracket Matcher</a>
+            <a href="23stringreduction.html	">23 String Reduction</a>
+            <a href="24threefivemultiples.html">24 Three Five Multiples</a>
+            <a href="25coindeterminer.html">25 Coin Determiner</a>
+            <a href="26fibonaccichecker.html">26 Fibonacci Checker</a>
+            <a href="27multiplebrackets.html">27 Multiple Brackets</a>
+            <a href="28mostfreetime.html">28 Most Free Time</a>
+            <a href="29overlappingrectangles.html">29 Overlapping Rectangles</a>
+            <a href="30looksaysequence.html">30 Look Say Sequence</a>
+            <a href="31distinctlist.html">31 Distinct List</a>
+            <a href="32numberencoding.html">32 Number Encoding</a>
+            <a href="33stockpicker.html">33 Stock Picker</a>
+            
+        </div>
+</div>
+
+<div class="dropdown">
+    <button class="dropbtn">Hard Challenges</button>
+        <div class="dropdown-content">
+            <a href="#">Coming Soon</a>
+
+        </div>
+</div>
+
 <p>Using the JavaScript language, have the function PrimeChecker(num) take num and return 1 
- if any arrangement of num comes out to be a prime number, otherwise return 0. 
- For example: if num is 910, the output should be 1 because 910 can be arranged into 
- 109 or 019, both of which are primes. </p>
+if any arrangement of num comes out to be a prime number, otherwise return 0.</p>
+ 
+<p>For example: if num is 910, the output should be 1 because 910 can be arranged into 
+109 or 019, both of which are primes. </p>
+</div>
 
 <script>
 

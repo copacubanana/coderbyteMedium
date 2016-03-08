@@ -2,13 +2,23 @@
 <html lang='en'>
 <head>
 <meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
 <title>SwapII</title>
 </head>
+<style>
+
+</style>
 <body>
+
+<h1>Coderbyte Challenge # 19 Swap II</h1>
+
+<div class='content'>
 <p>Using the JavaScript language, have the function SwapII(str) take the str parameter and 
 swap the case of each character. Then, if a letter is between two numbers (without 
 separation), switch the places of the two numbers. For example: if str is "6Hello4 -8World,
  7 yes3" the output should be 4hELLO6 -8wORLD, 7 YES3.</p>
+</div>
+
 
 <script>
 //Steps:
@@ -39,7 +49,7 @@ numInd = []; //collect all the positions of numbers
             upLow += str[i];
         }
     }
- 
+
     for (var j = 0; j < numInd.length-1; j++) {
 
         var start = numInd[j]; 

@@ -4,13 +4,96 @@
 <title>Dash II</title>
 <meta charset='UTF-8' />
 <style>
+
+body {
+     margin: 0;
+} 
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 25%;
+    background-color: #D8D8F2;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}    
+
+li a {
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+    font-family: georgia;
+    display: block;
+    padding: 1em 1em 1em 1em;
+}
+
+li a.active {
+    background-color: #E9E9AC;
+    color: darkpurple;
+}
+
+li a:hover:not(.active) {
+    background-color: #8E8EBC;
+    color: white;
+}
+
+.sidemenu {
+    width: 30%;  
+}
+
+.content {
+   width: 65%;
+   height: 600px;
+   margin-left: 25%;
+   display: inline-block;
+   padding: 1.5em 2em 1.5em 2em;
+   
+}
+
 </style>
 </head>
 <body>
+
+<div class="sidemenu">
+    <ul>
+	<li><a href="17primechecker.html">17 Prime Checker</a></li>
+    <li><a class="active" href="18dashinsertII.html">18 Dash Insert II</a></li>
+    <li><a href="19swapII.html">19 Swap II</a></li>
+    <li><a href="20numbersearch.html">20 Number Search</a></li>
+    <li><a href="21tripledouble.html">21 Triple Double</a></li>
+    <li><a href="22bracketmatcher.html">22 Bracket Matcher</a></li>
+    <li><a href="23stringreduction.html	">23 String Reduction</a></li>
+    <li><a href="24threefivemultiples.html">24 Three Five Multiples</a></li>
+    <li><a href="25coindeterminer.html">25 coindeterminer</a></li>
+    <li><a href="26fibonaccichecker.html">26 fibonacci checker</a></li>
+    <li><a href="27multiplebrackets.html">27 multiple brackets</a></li>
+    <li><a href="28mostfreetime.html">28 most free time</a></li>
+    <li><a href="29overlappingrectangles.html">29 overlapping rectangles</a></li>
+    <li><a href="30looksaysequence.html">30 look say sequence</a></li>
+    <li><a href="31distinctlist.html">31 distinct list</a></li>
+    <li><a href="32numberencoding.html">32 number encoding</a></li>
+    <li><a href="33stockpicker.html">33 stock picker</a></li>
+    </ul>
+</div>
+
+<div class="content">
 <p>Using the JavaScript language, have the function DashInsertII(num) insert dashes ('-') 
  between each two odd numbers and insert asterisks ('*') between each two even numbers in 
  str. For example: if str is 4546793 the output should be 454*67-9-3. Don't count zero as 
  an odd or even number. </p>
+ 
+<div>
+
+<p id="p1"></p>
+<p id="p2"></p>
+<p id="p3"></p>
+<p id="p4"></p>
+<p id="p5"></p>
+
+</div>
+</div>
 
 <script>
 
@@ -45,15 +128,15 @@ return answer;
 
 }
 
-document.write(DashInsertII(99946)); //9-9-94*6 
+document.getElementById('p1').innerHTML = DashInsertII(99946); //9-9-94*6 
 document.write('<br>');
-document.write(DashInsertII(56647304)); //56*6*47-304
+document.getElementById('p2').innerHTML = DashInsertII(56647304); //56*6*47-304
 document.write('<br>');
-document.write(DashInsertII(4546793)); //454*67-9-3
+document.getElementById('p3').innerHTML = DashInsertII(4546793); //454*67-9-3
 document.write('<br>');
-document.write(DashInsertII(10120)); //10120
+document.getElementById('p4').innerHTML = DashInsertII(10120); //10120
 document.write('<br>');
-document.write(DashInsertII(60497642)); //6049-76*4*2
+document.getElementById('p5').innerHTML = DashInsertII(60497642); //6049-76*4*2
 document.write('<br>');
 
 /* Notes 
