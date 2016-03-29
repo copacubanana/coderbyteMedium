@@ -17,15 +17,25 @@ should return the next number in the sequence given num. </p>
 <script>
 
 function LookSaySequence(num) {
-
-return ;
+numStr = num.toString();
+count = 1;
+numSequence = '';
+  for (var i = 0; i < numStr.length; i++) {
+     if (numStr.substr(i,1) == numStr.substr(i+1,1) ) {
+       count++; 
+     } else {
+       numSequence += count.toString() + numStr.substr(i,1);
+       count = 1;
+     }
+  }
+return numSequence;
 }
 
-document.write(LookSaySequence(num)); //
+document.write(LookSaySequence(1)); // 11
 document.write('<br>');
-document.write(LookSaySequence(num)); //
+document.write(LookSaySequence(23)); // 1213
 document.write('<br>');
-document.write(LookSaySequence(num)); //
+document.write(LookSaySequence(33)); //23
 
 </script>
 </body>

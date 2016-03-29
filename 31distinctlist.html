@@ -5,6 +5,8 @@
 <title>Distinct List</title>
 </head>
 <body>
+
+<h1>Medium Challenge 31/33: JS: Distinct List</h1>
 <p>Using the JavaScript language, have the function DistinctList(arr) take the array of 
 numbers stored in arr and determine the total number of duplicate entries. For example if 
 the input is [1, 2, 2, 2, 3] then your program should output 2 because there are two 
@@ -14,7 +16,16 @@ duplicates of one of the elements. </p>
 
 function DistinctList(arr) {
 
-return ;
+arr.sort(function(a,b){return a-b});
+count = 0;
+distinctArr = [];  
+  for (var i = 0; i < arr.length-1; i++) {
+    if (arr[i] == arr[i+1]) {
+      count++;
+    }
+  }
+
+return count;
 }
 
 document.write(DistinctList([0,-2,-2,5,5,5])); // 3

@@ -57,15 +57,12 @@ convert = "";
 if(stm.search('PM') !== -1 && sth.search('12') == -1) {
     sth = Number(sth) + 12;
 }
-
 if(etm.search('PM') !== -1 && eth.search('12') == -1) {
     eth = Number(eth) + 12;
 }
-
 if(stm.search('AM') !== -1 && sth.search('12') !== -1) {
     sth = "00";
 }
-
 if(etm.search('AM') !== -1 && eth.search('12') !== -1) {
     eth = "00";
 }
@@ -76,42 +73,95 @@ if (stm.search('PM') !== -1 || stm.search('AM') !== -1 ) {
     stm = stm.replace('PM','');
     stm = stm.replace('AM','');
 }
-
 if (etm.search('PM') !== -1 || etm.search('AM') !== -1 ) {
     etm = etm.replace('PM','');
     etm = etm.replace('AM','');
 }
 
-convert = String(sth+ ":" + stm + "-" + eth + ":" + etm);
+convert = String(sth+ "." + stm + "-" + eth + "." + etm);
 
 return convert;
-
 }
 
-document.write(hours24("12:15PM-02:00PM")); //12:15-14:00
-document.write('<br>');
-document.write(hours24("1:15PM-12:00AM"));  //13:15-0:00
-document.write('<br>');
-
-
-//take start time split array and order
-
-function order(arr) {
-temp = "";
-
-
-
-
-}
-
-document.write(order(["10:00-12:30","02:00-02:45","09:10-09:50"]));
-document.write('<br>');
-
+//Put times in order
 
 function MostFreeTime(strArr) {
+convertArr = [];
+orderArr = [];
+orderTime = [];
+startTime = '';
+temp = 0;
+str = '';
+freeTime = 0;
+timeArray = [];
+betweenTime = [];
+most = 0;
+mosthr = 0;
+mostmin = 0;
+mft = '';
 
-return ;
+for (var i = 0; i < strArr.length; i++) {
+    convertArr.push(hours24(strArr[i]));
 }
+
+for (var j = 0; j < convertArr.length; j++) {
+    startTime = convertArr[j].substr(0,5);
+    orderArr.push(startTime);
+}
+
+orderArr.sort(function(a,b){return a-b});
+
+for (var k = 0; k < orderArr.length; k++) {
+  for (var z = 0; z < convertArr.length; z++) {
+    if (orderArr[k].search(convertArr[z].substr(0,5)) != -1) {
+        orderTime.push(convertArr[z]);
+    }
+  }
+}
+
+//take every last and first number and find the difference
+
+orderTime = orderTime.join("-");
+orderTime = orderTime.split("-");
+
+
+  for (var z = 1; z < orderTime.length; z+=2){
+    timeArray.push(orderTime[z]);
+  }
+
+//put the differences in hh:mm order
+//sort; return the last of the sorted array
+
+//return timeArray;
+
+  for (var y = 0; y < timeArray.length-1; y++) {
+    var currBT = 0;
+    currBT = (timeArray[y+1]*60) - (timeArray[y]*60);
+    if (currBT > most) {
+      most = currBT;
+    }
+  }
+  
+  mosthr = most/60;
+  mosthr = String(mosthr);
+  mosthr = mosthr.split('.');
+  
+  if (mosthr[0].length < 2) {
+  mosthr[0] = "0" + mosthr[0];
+  }
+  
+  mostmin = most%60;
+  mostmin = String(mostmin);
+
+  if (mostmin.length < 2) {
+  mostmin = "0" + mostmin;
+  }
+  
+  return mft = mosthr[0] + ':' + mostmin;
+
+}
+
+
 
 document.write(MostFreeTime(["12:15PM-02:00PM","09:00AM-10:00AM","10:30AM-12:00PM"])); // "00:30"
 document.write('<br>');
@@ -120,6 +170,12 @@ document.write('<br>');
 document.write(MostFreeTime(["10:00AM-12:30PM","02:00PM-02:45PM","09:10AM-09:50AM"])); // "01:30"
 document.write('<br>');
 
+
+/* Notes
+3/28/2016 This was a mess.
+See 28mostfreetime2.html for solution
+
+*/
 
 </script>
 </body>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8' />
+<meta content="width=device-width, initial-scale=1.0" />
+<title>Most Free Time</title>
+</head>
+
+<body>
+
+<h1>Coderbyte Challenge: JS: Medium: <br /> 28/33 Most Free Time</h1>
+
+<p> Using the JavaScript language, have the function MostFreeTime(strArr) read the strArr 
+parameter being passed which will represent a full day and will be filled with events that
+span from time X to time Y in the day.</p>
+
+<p>The format of each event will be hh:mmAM/PM-hh:mmAM/PM. For example, strArr may be 
+["10:00AM-12:30PM","02:00PM-02:45PM","09:10AM-09:50AM"].</p>
+
+<p>Your program will have to output the longest amount of free time available between the 
+start of your first event and the end of your last event in the format: hh:mm.</p>
+
+<p>The start event should be the earliest event in the day and the latest event should be 
+the latest event in the day. The output for the previous input would therefore be 01:30 
+(with the earliest event in the day starting at 09:10AM and the latest event ending at 
+02:45PM). The input will contain at least 3 events and the events may be out of order.</p>
+
+<script>
+
+function MostFreeTime(strArr) {
+sep = []; //remove the dash, separated time into individual
+minsArr = [];
+most = 0;
+minutes = 0;
+hours = 0;
+mostFT = '';
+
+                            // strip '-', create array sep, times in an array out of order
+
+for (var i = 0; i < strArr.length; i++) {
+  var currArr = strArr[i].split('-');
+  sep.push(currArr[0],currArr[1]);  
+}
+
+							// strip ':', change to 24 hr format, order least to greatest
+
+for (var j = 0; j < sep.length; j++) {
+am = /AM/;
+pm = /PM/;
+twelve = /12./;
+  sep[j] = sep[j].replace(':','.');
+
+  if ( pm.exec(sep[j]) ) {
+    
+    sep[j] = sep[j].replace('PM', '');
+    
+    if  ( !(twelve.exec(sep[j])) ) {
+      sep[j] = Number(sep[j]) + 12;
+    }
+  }
+
+  if ( am.exec(sep[j]) ) {
+  
+    sep[j] = sep[j].replace('AM', '');
+    
+    if ( twelve.exec(sep[j]) ) {
+      sep[j] = Number(sep[j]) - 12;
+    }
+  }
+
+sep[j] = Number(sep[j]);
+sep[j] = sep[j].toFixed(2);
+
+}
+
+sep.sort(function(a,b) {return a-b});
+
+							// change to minutes
+
+for (var k = 0; k < sep.length; k++) {
+var hr = 0;
+var currMins = 0;
+  hr = parseInt(sep[k]) * 60;
+  currMins = Number(hr) + ((sep[k]%1).toFixed(2) * 100);
+  minsArr.push(currMins);
+}
+
+							// find times in between, find most time in between
+
+for (var s = 2; s < minsArr.length; s+=2) {
+var between = 0;
+  between = minsArr[s] - minsArr[s-1];
+  if (between > most) {
+    most = between;
+  }
+}
+
+							// formatting, zero padding
+
+minutes = most % 60;
+hours = parseInt(most/60);
+
+while (String(hours).length < 2) {
+hours = "0" + hours;
+}
+
+while (String(minutes).length < 2) {
+minutes = "0" + minutes;
+}
+
+mostFT = hours + ":" + minutes;
+
+return mostFT;
+}
+
+document.write(MostFreeTime(["12:15PM-02:00PM","09:00AM-10:00AM","10:30AM-12:00PM"])); // "00:30"
+document.write('<br>');
+document.write(MostFreeTime(["12:15PM-02:00PM","09:00AM-12:11PM","02:02PM-04:00PM"])); // "00:04"
+document.write('<br>');
+document.write(MostFreeTime(["10:00AM-12:30PM","02:00PM-02:45PM","09:10AM-09:50AM"])); // "01:30"
+document.write('<br>');
+
+
+/* Notes
+ 3/28/2016 SOLVED YAY!
+ Been working on this for a while now.  See 28mostfreetime.html for horror show
+ Tried out .exec().. Also, not using !== true etc. for conditions, code looks cleaner
+ The flaw is if there are overlapping events, otherwise seems to work ok
+*/
+
+
+</script>
+</body>
+</html>

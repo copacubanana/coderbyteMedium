@@ -1,5 +1,109 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
-    background-color: red;
-    color: white:
-    font-size: 20px;
+    background-color: olive;
+    color: olive;
+    margin: 0px;
+    font-family: Verdana, Georgia, serif;
+    font-size: 16px;
+}
+
+/* ================================= HEADER ================================ */
+
+#header {
+    background-color: white;
+    border-radius: 5px;
+    padding: 1px;
+    margin: 10px;
+}
+
+h1 {
+    color: olive;
+    padding: 2px;
+    text-align: center;
+    font-size: 125%;
+    width: 100%;
+}
+
+/* ================================= CONTENT ================================ */
+
+.content {
+    width: 70%;
+    font-size: 90%;;
+    background-color: white;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+/* ================================= RIGHT SIDE ================================ */
+
+.side {
+    background-color: white;
+    margin-top: 0px;
+    margin-right: 10px;
+    margin-bottom: 0px;
+    margin-left: 10px;
+    padding: 0px;
+    width: 25%;
+    height: 20em;
+    color: black;
+    font-size: 80%;;
+    border-radius: 5px;
+    float: right;
+    clear: right;
+    overflow: scroll;
+}
+
+.side ul { /* .parentclass element descendant selector*/
+    list-style-type: none;
+    padding-left: 10px;
+    padding-top: 0;
+    
+}
+
+.side ul li a{
+    text-decoration: none;
+    display: block;
+    color: olive;
+    padding: 0;
+    margin: 0;
+    
+}
+
+.side ul li a:hover {
+    background-color: #f3ece7;
+}
+
+h3 {
+    color: olive;
+    font-size: 90%;
+    font-weight: bolder;
+    text-align: center;
+}
+
+/* ================================= FOOTER ================================ */
+
+.footer {
+    background-color: white;
+    border-radius: 5px;
+    height: 50px;
+    padding: 10px;
+    margin-top: 0px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    text-align: center;
+}
+.footer a {
+    color: olive;
+    font-size: 90%;
+    text-decoration: none;
+    font-weight: bolder;
+}
+
+a:visited {
+    color: pink;
 }
