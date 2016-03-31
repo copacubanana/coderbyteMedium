@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<title>Overlapping Rectangles</title>
+</head>
+<body>
+
+<h1>Coderbyte Challenge: Medium: 29/33 Overlapping Rectangles</h1>
+
+<p> Using the JavaScript language, have the function OverlappingRectangles(strArr) read 
+the strArr parameter being passed which will represent two rectangles on a Cartesian 
+coordinate plane and will contain 8 coordinates with the first 4 making up rectangle 1 and
+the last 4 making up rectange 2.</p>
+
+<p>It will be in the following format: 
+["(0,0),(2,2),(2,0),(0,2),(1,0),(1,2),(6,0),(6,2)"] Your program should determine the area
+of the space where the two rectangles overlap, and then output the number of times this 
+overlapping region can fit into the first rectangle. </p>
+
+<p>For the above example, the overlapping region makes up a rectangle of area 2, and the 
+first rectangle (the first 4 coordinates) makes up a rectangle of area 4, so your program 
+should output 2. The coordinates will all be integers. If there's no overlap between the 
+two rectangles return 0. </p>
+
+
+<script>
+
+function OverlappingRectangles(strArr) {
+
+					// Format, strip parentheses, separate into 2 rectangles 
+
+  for (var s = 0; s < strArr.length; s++) {
+    strArr[s] = strArr[s].replace(/[()]/g,'');  
+  }
+
+  rectangle1 = strArr.slice(0,4);
+  rectangle2 = strArr.slice(4);
+  rectangle3 = []; 
+
+                   // Rectangles Lengths widths start end points    
+
+  var lenwidStartEnd = function(rectangle) {
+  arrLen = [];
+  arrWid = [];
+  hilowArr = [];
+
+    for (var i = 0; i < rectangle.length; i++) {
+      tempArr = rectangle[i].split(',');
+      arrLen.push(tempArr[0]);
+      arrWid.push(tempArr[1]);
+    }
+    
+  arrLen.sort(function(a,b){return a-b});
+  arrWid.sort(function(a,b){return a-b});
+  
+  hilowArr.push(arrLen[0]);
+  hilowArr.push(arrLen[3]);
+  hilowArr.push(arrWid[0]);
+  hilowArr.push(arrWid[3]);
+  
+  return hilowArr;  
+  }
+  
+				//rectangle1 rectangle2 : length-start length-end width-start width-end
+
+rec1LenStartEnd = lenwidStartEnd(rectangle1); 
+rec2LenStartEnd = lenwidStartEnd(rectangle2); 
+
+             // check if any rectangle2 x points are inside rectangle1 x points range
+             // check if none, rectangle1 x points ,, ,, ,,
+             
+  var isInXYRange = function (recA,recBstartend) {         // is recA x points in recB X range, is rec in Y range
+  xMatch = [];
+  xyMatch = [];
+
+    for (var r = 0; r < recA.length; r++) {
+
+      tempPoint = recA[r].split(',');
+      tempX = tempPoint[0];
+  
+      if (tempX >= recBstartend[0] && tempX <= recBstartend[1]) {
+        xMatch.push(recA[r]);    
+      } 
+    }  
+     
+    for (var b = 0; b < xMatch.length; b++) {
+
+      tempPoint = xMatch[b].split(',');
+      tempY = tempPoint[1];
+  
+      if (tempY >= recBstartend[2] && tempY <= recBstartend[3] ) {
+      document.write(recBstartend[2] + ' >= ' + Number(tempY) + ' <= ' + recBstartend[3] + '<br>');
+      
+        xyMatch.push(xMatch[b]);    
+      } 
+    }
+    return xyMatch;
+  }  
+  
+XYmatchRec2 = isInXYRange(rectangle2,rec1LenStartEnd);
+XYmatchRec1 = isInXYRange(rectangle1,rec2LenStartEnd);   
+
+/*
+    if (XYmatchRec2.length == 0) {    				// if rec2 has NO points inside rec1
+    
+      if (XYmatchRec1.length != 0) { 						// rec1 has points inside rec2
+      }
+      
+      if (XYmatchRec1.length == 0) { 			// neither rec has corner points in either
+      
+            // if none are in y range, but 4 points in X range
+            // check if all four are exceeding x or y values, else Return O does not overlap
+            
+        // return 0;
+      }
+    } 
+    
+    if (XYmatchRec2.length != 0) {        					// rec2 has points inside rec1
+    
+    }
+
+			// calculate length and width of Rectangle 3
+			// find area -- make an area function?
+    		// find area of rectangle one
+*/
+
+return 'Rec2 points inside Rec1 : ' + XYmatchRec2 + '<br> Rec1 points inside Rec2 : ' + XYmatchRec1;
+} 
+
+/*   
+
+rec1LenStart = rec1LenStartEnd[0];
+rec1LenEnd  = rec1LenStartEnd[1];
+rec1WidStart = rec1LenStartEnd[2];
+rec1WidEnd = rec1LenStartEnd[3];
+
+rec2LenStart = rec2LenStartEnd[0];
+rec2LenEnd  = rec2LenStartEnd[1];
+rec2WidStart = rec2LenStartEnd[2];
+rec2WidEnd = rec2LenStartEnd[3];     
+
+
+*/
+
+/*                    
+document.write( OverlappingRectangles(
+                ["(0,0)","(2,2)","(2,0)","(0,2)","(1,0)","(1,2)","(6,0)","(6,2)"]) ); // 2
+
+document.write('<br>');
+*/
+document.write(OverlappingRectangles(
+               ["(0,0)","(0,-2)","(3,0)","(3,-2)","(2,-1)","(3,-1)","(2,3)","(3,3)"]) ); // 6
+/*
+document.write('<br>');
+
+document.write(OverlappingRectangles(
+               ["(0,0)","(5,0)","(0,2)","(5,2)","(2,1)","(5,1)","(2,-1)","(5,-1)"]) ); // 3
+*/
+
+
+
+
+/* Notes 3/28/16
+
+
+                  // sort by x
+            
+  var sort = function (arr) {
+    sorted = [];
+    sorted.push(arr[0]);
+  for (var i = 1; i < arr.length; i++) {
+    for (var z = sorted.length-1; z > -1; z--) {  
+      if (parseInt(arr[i]) > parseInt(sorted[z]) ) {
+        sorted.splice(z+1,0,arr[i]);
+        break;
+      }
+      if (parseInt(arr[i]) <= parseInt(sorted[0]) ) {
+        sorted.unshift(arr[i]);
+        break;
+      }
+    }
+  }
+  return sorted;
+  }
+
+rectangle1 = sort(rectangle1);
+rectangle2 = sort(rectangle2);
+
+*/
+
+</script>
+</body>
+</html>
